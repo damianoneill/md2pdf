@@ -9,6 +9,7 @@
 # Go
 bin/
 dist/
+examples/*.pdf
 *.exe
 *.test
 *.out

@@ -1,13 +1,13 @@
-# Project Name
+# md2pdf
 
-One-line description of what this project does.
+Convert Markdown documents (including Mermaid diagrams) to PDF using a Go-native pipeline.
 
 ## Technology Stack
 
-- Language: <!-- e.g. Go 1.22+, Python 3.12+, Node 20+ -->
-- Key dependencies: <!-- list them here -->
-- Testing: <!-- e.g. make test, pytest, go test -->
-- Linting: <!-- e.g. make lint, ruff, golangci-lint -->
+- Language: Go 1.25+
+- Key dependencies: `github.com/yuin/goldmark`, `go.abhg.dev/goldmark/mermaid`, `github.com/yuin/goldmark-highlighting/v2`, `github.com/mxschmitt/playwright-go`
+- Testing: `go test ./...`
+- Linting: `golangci-lint run ./...`
 
 ## Build & Test Commands
 
@@ -34,23 +34,20 @@ usecase/
 └── <feature>/   # Business logic — orchestrates domain interfaces only
 adapter/         # Translates between external formats and domain types
 infrastructure/  # External integrations (databases, APIs, queues)
-fake/            # Test doubles for all domain ports — test use only
 internal/        # Private implementation details
 examples/        # Runnable examples demonstrating usage
 ```
 
 ### Dependency Rules
 
-| Layer | May depend on | Must not depend on |
-|-------|--------------|-------------------|
-| `domain/` | other `domain/`, stdlib | `usecase`, `adapter`, `infrastructure`, `fake` |
-| `usecase/` | `domain/`, stdlib | `adapter`, `infrastructure`, `fake` |
-| `adapter/` | `domain/`, `usecase/` | `infrastructure`, `fake` |
-| `infrastructure/` | `domain/`, `usecase/`, `adapter/` | `fake` |
-| `fake/` | anything | — |
+| Layer             | May depend on                     | Must not depend on                     |
+| ----------------- | --------------------------------- | -------------------------------------- |
+| `domain/`         | other `domain/`, stdlib           | `usecase`, `adapter`, `infrastructure` |
+| `usecase/`        | `domain/`, stdlib                 | `adapter`, `infrastructure`            |
+| `adapter/`        | `domain/`, `usecase/`             | `infrastructure`                       |
+| `infrastructure/` | `domain/`, `usecase/`, `adapter/` |
 
 - **No framework or third-party imports** in `domain/` or `usecase/`
-- **`fake/` is for testing only** — never imported in production code
 
 ## Code Style Guidelines
 
