@@ -1,0 +1,38 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Claude Code local overrides
+.claude/settings.local.json
+
+# Go
+bin/
+dist/
+*.exe
+*.test
+*.out
+vendor/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg
+
+# Node
+node_modules/
+dist/
+.next/
+.nuxt/
+
+# OS
+.DS_Store
+Thumbs.db
