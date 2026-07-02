@@ -35,6 +35,10 @@ body {
 }
 @media print {
   body { padding: 20px; }
+  table { font-size: 0.75em; border-collapse: collapse; }
+  tr { break-inside: avoid; }
+  td, th { overflow-wrap: break-word; min-width: 0; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
 }
 </style>
 </head>
